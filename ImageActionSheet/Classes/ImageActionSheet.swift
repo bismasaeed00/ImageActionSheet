@@ -9,7 +9,7 @@
 import UIKit
 import Foundation
 
-class ImageActionSheet: UIViewController {
+public class ImageActionSheet: UIViewController {
     var configuration = ActionSheetConfiguration()
     
     private var message: String?

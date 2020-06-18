@@ -1,0 +1,6 @@
+framework module Pods_ImageActionSheet_Example {
+  umbrella header "Pods-ImageActionSheet_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}

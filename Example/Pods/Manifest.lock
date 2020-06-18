@@ -1,0 +1,16 @@
+PODS:
+  - ImageActionSheet (1.0.0)
+
+DEPENDENCIES:
+  - ImageActionSheet (from `../`)
+
+EXTERNAL SOURCES:
+  ImageActionSheet:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  ImageActionSheet: c0876fd2b6ea3c4ec719a07788b76df175ce31e0
+
+PODFILE CHECKSUM: 75038a4fe0f448161e47ca99b9729609ef03aa52
+
+COCOAPODS: 1.8.4

@@ -1,0 +1,6 @@
+framework module ImageActionSheet {
+  umbrella header "ImageActionSheet-umbrella.h"
+
+  export *
+  module * { export * }
+}

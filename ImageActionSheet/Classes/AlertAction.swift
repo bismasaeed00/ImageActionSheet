@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AlertAction {
+public class AlertAction {
     let title: String?
     let icon: UIImage?
     @objc let action: (() -> Void)?
@@ -21,7 +21,7 @@ class AlertAction {
 }
 
 extension AlertAction: Equatable {
-    static func == (lhs: AlertAction, rhs: AlertAction) -> Bool {
+    public static func == (lhs: AlertAction, rhs: AlertAction) -> Bool {
         return lhs.title == rhs.title &&
             lhs.icon == rhs.icon
     }

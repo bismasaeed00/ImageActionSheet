@@ -1,21 +1,29 @@
 # ImageActionSheet
-iOS Native style action sheet with the option of showing icons
 
-![alt text](https://user-images.githubusercontent.com/16186934/83187499-87f88480-a12e-11ea-8a12-19e08cebb4dc.png)
+[![CI Status](https://img.shields.io/travis/Bisma Saeed/ImageActionSheet.svg?style=flat)](https://travis-ci.org/Bisma Saeed/ImageActionSheet)
+[![Version](https://img.shields.io/cocoapods/v/ImageActionSheet.svg?style=flat)](https://cocoapods.org/pods/ImageActionSheet)
+[![License](https://img.shields.io/cocoapods/l/ImageActionSheet.svg?style=flat)](https://cocoapods.org/pods/ImageActionSheet)
+[![Platform](https://img.shields.io/cocoapods/p/ImageActionSheet.svg?style=flat)](https://cocoapods.org/pods/ImageActionSheet)
 
-## How to use it
-Copy classes folder in your project and you can use it like that in your UIViewController:
+## Example
 
-            let actionSheet = ImageActionSheet(title: "Upload a file", message: "Please choose a file.")
-            actionSheet.add(action: AlertAction(title: "Camera", icon: UIImage(named: "camera"), action: {
-                print("Camera clicked")
-            }))
-            actionSheet.add(action: AlertAction(title: "Gallery", icon: UIImage(named: "gallery"), action: {
-                print("Gallery clicked")
-            }))
-            
-            actionSheet.add(action: AlertAction(title: "Document", icon: UIImage(named: "file"), action: {
-                print("Document clicked")
-            }))
-            
-            actionSheet.show(in: self)
+To run the example project, clone the repo, and run `pod install` from the Example directory first.
+
+## Requirements
+
+## Installation
+
+ImageActionSheet is available through [CocoaPods](https://cocoapods.org). To install
+it, simply add the following line to your Podfile:
+
+```ruby
+pod 'ImageActionSheet'
+```
+
+## Author
+
+Bisma Saeed, bisma.saeed@check24.de
+
+## License
+
+ImageActionSheet is available under the MIT license. See the LICENSE file for more info.

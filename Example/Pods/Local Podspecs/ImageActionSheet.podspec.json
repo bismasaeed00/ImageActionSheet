@@ -1,0 +1,24 @@
+{
+  "name": "ImageActionSheet",
+  "version": "1.0.0",
+  "summary": "iOS Native style action sheet with the option of showing icons. It is a complete implementation and does not use any private api of UIKit.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/bismasaeed00/ImageActionSheet",
+  "screenshots": "https://user-images.githubusercontent.com/16186934/83187499-87f88480-a12e-11ea-8a12-19e08cebb4dc.png",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "Bisma Saeed": "bismasaeed00@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/Bisma Saeed/ImageActionSheet.git",
+    "tag": "1.0.0"
+  },
+  "social_media_url": "https://twitter.com/bismasaeed00",
+  "platforms": {
+    "ios": "11.0"
+  },
+  "source_files": "ImageActionSheet/Classes/**/*"
+}

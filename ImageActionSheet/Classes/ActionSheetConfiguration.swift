@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct ActionSheetConfiguration {
+public struct ActionSheetConfiguration {
     var cancelButtonTitle = "Cancel"
     var tintColor = UIColor.systemBlue
     var infoColor = UIColor.lightGray

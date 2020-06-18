@@ -1,0 +1,12 @@
+use_frameworks!
+platform :ios, '11.0'
+
+target 'ImageActionSheet_Example' do
+  pod 'ImageActionSheet', :path => '../'
+
+  target 'ImageActionSheet_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end

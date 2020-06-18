@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension UIButton {
+public extension UIButton {
     private func actionHandler(action:(() -> Void)? = nil) {
         struct __ { static var action :(() -> Void)? }
         if action != nil { __.action = action }
