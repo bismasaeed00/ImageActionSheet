@@ -22,7 +22,7 @@ pod 'ImageActionSheet'
 
 ## Author
 
-Bisma Saeed, bisma.saeed@check24.de
+Bisma Saeed, bismasaeed00@gmail.com
 
 ## License
 
