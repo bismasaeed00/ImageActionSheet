@@ -73,18 +73,18 @@ public class ImageActionSheet: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    convenience init(title:String?, message:String?) {
+    public convenience init(title:String?, message:String?) {
         self.init()
         self.alertTitle = title
         self.message = message
     }
     
     //MARK: Public
-    func add(action: AlertAction) {
+    public func add(action: AlertAction) {
         actions.append(action)
     }
     
-    func show(in view: UIViewController) {
+    public func show(in view: UIViewController) {
         configureView()
         modalPresentationStyle = .overFullScreen
         view.present(self, animated: true, completion: nil)

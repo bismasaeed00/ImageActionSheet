@@ -13,7 +13,7 @@ public class AlertAction {
     let icon: UIImage?
     @objc let action: (() -> Void)?
     
-    init(title: String?, icon: UIImage?, action: (() -> Void)?) {
+    public init(title: String?, icon: UIImage?, action: (() -> Void)?) {
         self.title = title
         self.icon = icon
         self.action = action
