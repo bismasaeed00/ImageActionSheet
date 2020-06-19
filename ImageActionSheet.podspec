@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
   s.screenshots     = 'https://user-images.githubusercontent.com/16186934/83187499-87f88480-a12e-11ea-8a12-19e08cebb4dc.png'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Bisma Saeed' => 'bismasaeed00@gmail.com' }
-  s.source           = { :git => 'https://github.com/Bisma Saeed/ImageActionSheet.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/bismasaeed00/ImageActionSheet.git', :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/bismasaeed00'
 
   s.ios.deployment_target = '13.0'
