@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = 'ImageActionSheet'
   s.version          = '1.0.0'
-  s.summary          = 'iOS Native style action sheet with the option of showing icons. It is a complete implementation and does not use any private api of UIKit.'
+  s.summary          = 'iOS Native style action sheet with the option of showing icons.'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -17,9 +17,7 @@ Pod::Spec.new do |s|
 #   * Write the description between the DESC delimiters below.
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
-  s.description      = <<-DESC
-TODO: Add long description of the pod here.
-                       DESC
+  s.description      = 'iOS Native style action sheet with the option of showing icons. It is a complete implementation and does not use any private api of UIKit.'
 
   s.homepage         = 'https://github.com/bismasaeed00/ImageActionSheet'
   s.screenshots     = 'https://user-images.githubusercontent.com/16186934/83187499-87f88480-a12e-11ea-8a12-19e08cebb4dc.png'
@@ -28,9 +26,14 @@ TODO: Add long description of the pod here.
   s.source           = { :git => 'https://github.com/Bisma Saeed/ImageActionSheet.git', :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/bismasaeed00'
 
-  s.ios.deployment_target = '11.0'
+  s.ios.deployment_target = '13.0'
+  s.platform        = :ios, '13.0'
 
   s.source_files = 'ImageActionSheet/Classes/**/*'
+  s.swift_versions = '5.0'
+  
+  # Fix for known issue in swift compiler (see 47598583)
+  #s.xcconfig = { 'OTHER_LDFLAGS' => '-Wl,-force_load,${PODS_CONFIGURATION_BUILD_DIR}/C24Profis/C24Profis.framework/C24Profis' }
   
   # s.resource_bundles = {
   #   'ImageActionSheet' => ['ImageActionSheet/Assets/*.png']
