@@ -11,12 +11,6 @@ Pod::Spec.new do |s|
   s.version          = '1.0.0'
   s.summary          = 'iOS Native style action sheet with the option of showing icons.'
 
-# This description is used to generate tags and improve search results.
-#   * Think: What does it do? Why did you write it? What is the focus?
-#   * Try to keep it short, snappy and to the point.
-#   * Write the description between the DESC delimiters below.
-#   * Finally, don't worry about the indent, CocoaPods strips it!
-
   s.description      = 'iOS Native style action sheet with the option of showing icons. It is a complete implementation and does not use any private api of UIKit.'
 
   s.homepage         = 'https://github.com/bismasaeed00/ImageActionSheet'
@@ -32,14 +26,4 @@ Pod::Spec.new do |s|
   s.source_files = 'ImageActionSheet/Classes/**/*'
   s.swift_versions = '5.0'
   
-  # Fix for known issue in swift compiler (see 47598583)
-  #s.xcconfig = { 'OTHER_LDFLAGS' => '-Wl,-force_load,${PODS_CONFIGURATION_BUILD_DIR}/C24Profis/C24Profis.framework/C24Profis' }
-  
-  # s.resource_bundles = {
-  #   'ImageActionSheet' => ['ImageActionSheet/Assets/*.png']
-  # }
-
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
 end
