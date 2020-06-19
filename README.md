@@ -1,6 +1,6 @@
 # ImageActionSheet
 
-[![CI Status](https://img.shields.io/travis/Bisma Saeed/ImageActionSheet.svg?style=flat)](https://travis-ci.org/Bisma Saeed/ImageActionSheet)
+[![CI Status](https://img.shields.io/travis/bismasaeed00/ImageActionSheet.svg?style=flat)](https://travis-ci.org/bismasaeed00/ImageActionSheet)
 [![Version](https://img.shields.io/cocoapods/v/ImageActionSheet.svg?style=flat)](https://cocoapods.org/pods/ImageActionSheet)
 [![License](https://img.shields.io/cocoapods/l/ImageActionSheet.svg?style=flat)](https://cocoapods.org/pods/ImageActionSheet)
 [![Platform](https://img.shields.io/cocoapods/p/ImageActionSheet.svg?style=flat)](https://cocoapods.org/pods/ImageActionSheet)
