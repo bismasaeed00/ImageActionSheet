@@ -1,6 +1,6 @@
 //
-//  ImageActionSheet.swift
-//  ImageActionSheet
+//  BSImageActionSheet.swift
+//  BSImageActionSheet
 //
 //  Created by Bisma Saeed on 21.05.20.
 //  Copyright © 2020 Bisma Saeed. All rights reserved.
@@ -9,13 +9,15 @@
 import UIKit
 import Foundation
 
-public class ImageActionSheet: UIViewController {
-    var configuration = ActionSheetConfiguration()
+public class BSImageActionSheet: UIViewController {
+    var configuration = BSActionSheetConfiguration()
     
     private var message: String?
     private var alertTitle: String?
     private var containerView = UIView()
-    private var actions = [AlertAction]()
+    private let cancelButton = UIButton()
+    private var presenterView: BSActionSheetViewController?
+    private var actions = [BSAlertAction]()
     
     private var stackView: UIStackView = {
         let stackView = UIStackView()
@@ -27,40 +29,12 @@ public class ImageActionSheet: UIViewController {
         return stackView
     }()
     
-    private var cancelButton: UIButton = {
-        let button = UIButton(type: .custom)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
-        button.setTitleColor(.systemBlue, for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = .white
-        button.layer.cornerRadius = 16
-        button.clipsToBounds = true
-        button.addTarget(self, action: #selector(dismissSheet), for: .touchUpInside)
-        return button
-    }()
-    
-    private var messageLabel: UILabel = {
-        let label = UILabel()
-        label.numberOfLines = 0
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textAlignment = .center
-        return label
-    }()
-    
-    private var titleLabel: UILabel = {
-        let label = UILabel()
-        label.numberOfLines = 0
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textAlignment = .center
-        return label
-    }()
-    
-    //MARK: Initializers
+    // MARK: Initializers
     init() {
         super.init(nibName: nil, bundle: nil)
-        view.frame = UIScreen.main.bounds
         containerView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(containerView)
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissSheet)))
         
         NSLayoutConstraint.activate([
             containerView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0),
@@ -73,24 +47,27 @@ public class ImageActionSheet: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public convenience init(title:String?, message:String?) {
+    public convenience init(title: String?, message: String?) {
         self.init()
         self.alertTitle = title
         self.message = message
     }
     
-    //MARK: Public
-    public func add(action: AlertAction) {
+    // MARK: Public
+    public func add(action: BSAlertAction) {
         actions.append(action)
     }
     
-    public func show(in view: UIViewController) {
+    public func show() {
         configureView()
-        modalPresentationStyle = .overFullScreen
-        view.present(self, animated: true, completion: nil)
+        let actionSheetViewController = BSActionSheetViewController(actionSheet: self)
+        actionSheetViewController.modalTransitionStyle = .crossDissolve
+        actionSheetViewController.modalPresentationStyle = .overFullScreen
+        UIApplication.shared.windows.first?.rootViewController?.present(actionSheetViewController, animated: false, completion: nil)
+        presenterView = actionSheetViewController
     }
     
-    //MARK: Private
+    // MARK: Private
     private func configureView() {
         addCancelButton()
         addActionsBackgroundView()
@@ -124,20 +101,28 @@ public class ImageActionSheet: UIViewController {
         ])
     }
     
+    private func getLabel() -> UILabel {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = .center
+        label.textColor = configuration.infoColor
+        return label
+    }
+    
     private func addActionSheetInfo() {
         let messageBackgroundView = UIView()
         messageBackgroundView.translatesAutoresizingMaskIntoConstraints = false
         stackView.addArrangedSubview(messageBackgroundView)
         
+        let titleLabel = getLabel()
+        let messageLabel = getLabel()
         messageBackgroundView.addSubview(titleLabel)
         messageBackgroundView.addSubview(messageLabel)
         
         titleLabel.text = alertTitle
-        titleLabel.textColor = configuration.infoColor
         titleLabel.font = UIFont.systemFont(ofSize: configuration.titleFontSize, weight: .medium)
-        
         messageLabel.text = message
-        messageLabel.textColor = configuration.infoColor
         messageLabel.font = UIFont.systemFont(ofSize: configuration.messageFontSize)
         
         NSLayoutConstraint.activate([
@@ -161,40 +146,28 @@ public class ImageActionSheet: UIViewController {
     
     private func addActions() {
         actions.forEach { addAction($0) }
-        Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false) { timer in
-            self.view.backgroundColor = UIColor(white: 0, alpha: 0.2)
-        }
     }
     
-    private func addAction(_ action: AlertAction ) {
+    private func addAction(_ action: BSAlertAction ) {
         guard let title = action.title else { return }
         addSeparater(in: stackView)
-        
-        let horizontalStackView = UIStackView()
-        horizontalStackView.translatesAutoresizingMaskIntoConstraints = false
-        horizontalStackView.axis  = NSLayoutConstraint.Axis.horizontal
-        horizontalStackView.distribution  = UIStackView.Distribution.fill
-        horizontalStackView.alignment = UIStackView.Alignment.center
-        horizontalStackView.spacing   = 12
-        stackView.addArrangedSubview(horizontalStackView)
-        
-        NSLayoutConstraint.activate([
-            horizontalStackView.heightAnchor.constraint(equalToConstant: 50),
-            horizontalStackView.leftAnchor.constraint(equalTo: stackView.leftAnchor, constant: configuration.viewPadding)
-        ])
-        
         let button = UIButton(type: .custom)
         button.setTitle(title, for: .normal)
         button.setTitleColor(configuration.tintColor, for: .normal)
         button.contentHorizontalAlignment = .left
         button.translatesAutoresizingMaskIntoConstraints = false
         button.titleEdgeInsets = UIEdgeInsets(top: 0, left: configuration.viewPadding, bottom: 0, right: 0)
-        if let action = action.action {
-            button.actionHandler(controlEvents: .touchUpInside, ForAction: action)
+        button.addAction(for: .touchUpInside) { [weak self] in
+            self?.dismissSheet(completion: {
+                action.action?()
+            })
         }
-        
         button.setImage(action.icon, for: .normal)
-        horizontalStackView.addArrangedSubview(button)
+        stackView.addArrangedSubview(button)
+        NSLayoutConstraint.activate([
+            button.heightAnchor.constraint(equalToConstant: 50),
+            button.leftAnchor.constraint(equalTo: stackView.leftAnchor, constant: configuration.viewPadding)
+        ])
     }
     
     private func addSeparater(in stackView: UIStackView) {
@@ -208,8 +181,15 @@ public class ImageActionSheet: UIViewController {
     }
     
     private func addCancelButton() {
-        containerView.addSubview(cancelButton)
+        cancelButton.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
+        cancelButton.translatesAutoresizingMaskIntoConstraints = false
+        cancelButton.backgroundColor = .white
+        cancelButton.layer.cornerRadius = 16
+        cancelButton.clipsToBounds = true
+        cancelButton.addTarget(self, action: #selector(dismissSheet), for: .touchUpInside)
         cancelButton.setTitle(configuration.cancelButtonTitle, for: .normal)
+        cancelButton.setTitleColor(configuration.tintColor, for: .normal)
+        containerView.addSubview(cancelButton)
         
         NSLayoutConstraint.activate([
             cancelButton.heightAnchor.constraint(equalToConstant: configuration.elementHeight + 8),
@@ -219,7 +199,10 @@ public class ImageActionSheet: UIViewController {
         ])
     }
     
-    @objc private func dismissSheet() {
-        dismiss(animated: true, completion: nil)
+    @objc private func dismissSheet(completion: (() -> Void)? = nil) {
+        self.presenterView?.removeBackground()
+        dismiss(animated: true, completion: {
+            self.presenterView?.dismiss(animated: false, completion: completion)
+        })
     }
 }

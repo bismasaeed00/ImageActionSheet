@@ -1,5 +1,5 @@
 //
-//  ActionSheetConfiguration.swift
+//  BSActionSheetConfiguration.swift
 //  ImageActionSheet
 //
 //  Created by Bisma Saeed on 21.05.20.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-public struct ActionSheetConfiguration {
+public struct BSActionSheetConfiguration {
     var cancelButtonTitle = "Cancel"
     var tintColor = UIColor.systemBlue
     var infoColor = UIColor.lightGray
@@ -17,7 +17,7 @@ public struct ActionSheetConfiguration {
     var alertFontSize: CGFloat = 17
     var cancelFontSize: CGFloat = 17
     
-    //MARK: Layout configurations
+    // MARK: Layout configurations
     var viewPadding: CGFloat = 16.0
     var bottomPadding: CGFloat = 32.0
     var seperationPadding: CGFloat = 10.0

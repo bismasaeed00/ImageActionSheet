@@ -1,5 +1,5 @@
 //
-//  AlertAction.swift
+//  BSAlertAction.swift
 //  ImageActionSheet
 //
 //  Created by Bisma Saeed on 21.05.20.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class AlertAction {
+public class BSAlertAction {
     let title: String?
     let icon: UIImage?
     @objc let action: (() -> Void)?
@@ -20,8 +20,8 @@ public class AlertAction {
     }
 }
 
-extension AlertAction: Equatable {
-    public static func == (lhs: AlertAction, rhs: AlertAction) -> Bool {
+extension BSAlertAction: Equatable {
+    public static func == (lhs: BSAlertAction, rhs: BSAlertAction) -> Bool {
         return lhs.title == rhs.title &&
             lhs.icon == rhs.icon
     }

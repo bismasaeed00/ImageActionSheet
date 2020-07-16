@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'ImageActionSheet'
-  s.version          = '1.0.1'
+  s.version          = '1.0.2'
   s.summary          = 'iOS Native style action sheet with the option of showing icons.'
 
   s.description      = 'iOS Native style action sheet with the option of showing icons. It is a complete implementation and does not use any private api of UIKit.'

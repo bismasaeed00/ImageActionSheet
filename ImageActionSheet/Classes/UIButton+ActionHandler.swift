@@ -8,19 +8,22 @@
 
 import UIKit
 
-public extension UIButton {
-    private func actionHandler(action:(() -> Void)? = nil) {
-        struct __ { static var action :(() -> Void)? }
-        if action != nil { __.action = action }
-        else { __.action?() }
+@objc class ClosureSleeve: NSObject {
+    let closure: () -> Void
+
+    init (_ closure: @escaping () -> Void) {
+        self.closure = closure
     }
-    
-    @objc private func triggerActionHandler() {
-        self.actionHandler()
+
+    @objc func invoke () {
+        closure()
     }
-    
-    func actionHandler(controlEvents control :UIControl.Event, ForAction action:@escaping () -> Void) {
-        self.actionHandler(action: action)
-        self.addTarget(self, action: #selector(triggerActionHandler), for: control)
+}
+
+extension UIButton {
+    func addAction(for controlEvents: UIControl.Event = .touchUpInside, _ closure: @escaping () -> Void) {
+        let sleeve = ClosureSleeve(closure)
+        addTarget(sleeve, action: #selector(ClosureSleeve.invoke), for: controlEvents)
+        objc_setAssociatedObject(self, "[\(arc4random())]", sleeve, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
     }
 }
